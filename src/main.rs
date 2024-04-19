@@ -1,14 +1,16 @@
 fn main() {
-    let foo: Vec<_> = vec![1, 2, 3] //bikin 3 belt
-        .iter() //hire pegawai untuk meletakkan setiap belt di conveyor
-        .map(|x| x + 1) //beli mesin untuk mengubah belt satu persatu
-        .collect(); //kumpulkan semua belt menjadi 1 container
+    let data = vec![1, 2, 3];
+    let mut foo = data //live long enough dan bisa di refer selamanya
+        .iter() //iter itu merefer pada vector, maka dari itu kita harus meng-assign-kan vector di variable lain
+        .map(|x| x + 1);
 
-    // kenapa butuh collect. kalau berhenti di map doang, itu bentuknya masih iter dan bukan vector dan bukan list
-    // bentuknya masih iterator
-    // collect digunakan untuk mengubah dari iterator menjadi vector
+    // APA YANG TERJADI DI BALIK COLLECT
+    let mut new_vector = vec![];
 
-    // intinya = mengembalikan bentuk dari iterator menjadi sesuatu (di case ini vector)
+    // Some dipakai biar kalau null dia ga error kalau next nya undefined
+    while let Some(x) = foo.next() {
+        new_vector.push(x);
+    }
 
-    println!("{:?}", foo);
+    println!("{:?}", new_vector);
 }
