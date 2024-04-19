@@ -1,16 +1,13 @@
+use std::collections::HashMap;
+
 fn main() {
-    let data = vec![1, 2, 3];
-    let mut foo = data //live long enough dan bisa di refer selamanya
-        .iter() //iter itu merefer pada vector, maka dari itu kita harus meng-assign-kan vector di variable lain
-        .map(|x| x + 1);
-
-    // APA YANG TERJADI DI BALIK COLLECT
-    let mut new_vector = vec![];
-
-    // Some dipakai biar kalau null dia ga error kalau next nya undefined
-    while let Some(x) = foo.next() {
-        new_vector.push(x);
-    }
-
-    println!("{:?}", new_vector);
+    // collect into hash map
+    let foo: HashMap<&str, usize> = vec!["this", "is", "a", "test"]
+                                    .into_iter()
+                                    .enumerate()  //kalau di ts .map((el, i)) kita bisa tahu index
+                                                  //di rust harus di enumerate dulu biar bisa nge index pas ngemap
+                                                  //enumerate = pair elemen dengan index nya => index, element
+                                    //contoh dari destructuring map(|(idx, item)|)
+                                    .map(|(idx, item)| (item, idx)) //reverse the order
+                                    .collect();
 }
