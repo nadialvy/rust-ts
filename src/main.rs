@@ -1,13 +1,15 @@
 use std::collections::HashMap;
 
 fn main() {
-    // collect into hash map
-    let foo: HashMap<&str, usize> = vec!["this", "is", "a", "test"]
-                                    .into_iter()
-                                    .enumerate()  //kalau di ts .map((el, i)) kita bisa tahu index
-                                                  //di rust harus di enumerate dulu biar bisa nge index pas ngemap
-                                                  //enumerate = pair elemen dengan index nya => index, element
-                                    //contoh dari destructuring map(|(idx, item)|)
-                                    .map(|(idx, item)| (item, idx)) //reverse the order
-                                    .collect();
+    //  * digunakan untuk mengambil nilai dari reference, karena x ini masih reference bukan nilai integers
+    let value: usize = vec![1, 2, 3].iter().filter(|x| *x % 2 == 0).count();
+    println!("{:?}", value);
+
+    // skip(2) artinya skip sampai nilai 2
+    let value2: usize = vec![1, 2, 3].iter().skip(2).count();
+    println!("{:?}", value2);
+
+    let map = HashMap::from([("foo", 1), ("bar", 2), ("baz", 3)]);
+
+    map.iter().for_each(|(k, v)| println!("{} : {}", k, v))
 }
